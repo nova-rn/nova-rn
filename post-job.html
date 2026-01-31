@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post Bounty Job</title>
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+    button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 8px; }
+    button:hover { background: #45a049; }
+    #status { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>🦐 Post Bounty Job</h2>
+  <p>Make sure you're on <strong>Base network</strong> in MetaMask</p>
+  <button onclick="postJob()">Connect Wallet & Post Job</button>
+  <div id="status">Ready</div>
+  <script>
+    async function postJob() {
+      try {
+        if (!window.ethereum) {
+          document.getElementById("status").innerText = "❌ No wallet found. Install MetaMask.";
+          return;
+        }
+        
+        document.getElementById("status").innerText = "🔗 Connecting wallet...";
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        
+        const network = await provider.getNetwork();
+        if (network.chainId !== 8453) {
+          document.getElementById("status").innerText = "❌ Wrong network. Switch to Base (chain 8453)";
+          return;
+        }
+        
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        document.getElementById("status").innerText = "✅ Connected: " + address.slice(0,8) + "...";
+        
+        const board = new ethers.Contract(
+          "0x1aef2515d21fa590a525ed891ccf1ad0f499c4c9",
+          ["function postJob(string,uint256,uint256,uint256,uint256) returns (uint256)"],
+          signer
+        );
+        
+        document.getElementById("status").innerText = "📝 Posting job... (confirm in wallet)";
+        const tx = await board.postJob(
+          "Write a Python script that monitors a Base wallet address and logs transactions",
+          ethers.utils.parseEther("100"),
+          ethers.utils.parseEther("500"),
+          3600,
+          86400
+        );
+        
+        document.getElementById("status").innerText = "⏳ Waiting for confirmation...";
+        await tx.wait();
+        document.getElementById("status").innerHTML = "✅ Job posted!<br>TX: <a href='https://basescan.org/tx/" + tx.hash + "' target='_blank'>" + tx.hash.slice(0,20) + "...</a>";
+      } catch (e) {
+        document.getElementById("status").innerText = "❌ Error: " + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
