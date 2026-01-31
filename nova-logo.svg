@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="shrimp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff8a65"/>
+      <stop offset="50%" style="stop-color:#ff7043"/>
+      <stop offset="100%" style="stop-color:#f4511e"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f5ff"/>
+      <stop offset="100%" style="stop-color:#0080ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Subtle circuit lines -->
+  <g stroke="#00f5ff" stroke-width="1" opacity="0.15" fill="none">
+    <path d="M0,100 H80 V180"/>
+    <path d="M400,150 H320 V220"/>
+    <path d="M60,400 V340 H140"/>
+    <path d="M340,400 V300 H280"/>
+    <circle cx="80" cy="180" r="4" fill="#00f5ff"/>
+    <circle cx="320" cy="220" r="4" fill="#00f5ff"/>
+  </g>
+  
+  <!-- Shrimp body - stylized curved shape -->
+  <g transform="translate(200,200)" filter="url(#shadow)">
+    <!-- Main body curve -->
+    <path d="M-60,-80 
+             Q-80,-40 -70,20 
+             Q-50,80 0,100 
+             Q50,80 70,20 
+             Q80,-40 60,-80
+             Q30,-100 0,-95
+             Q-30,-100 -60,-80" 
+          fill="url(#shrimp)"/>
+    
+    <!-- Body segments -->
+    <path d="M-55,-50 Q0,-60 55,-50" stroke="#e64a19" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M-60,-20 Q0,-30 60,-20" stroke="#e64a19" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M-55,15 Q0,5 55,15" stroke="#e64a19" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M-45,50 Q0,40 45,50" stroke="#e64a19" stroke-width="3" fill="none" opacity="0.6"/>
+    
+    <!-- Tail fan -->
+    <ellipse cx="-15" cy="95" rx="25" ry="15" fill="#ff8a65" transform="rotate(-20)"/>
+    <ellipse cx="15" cy="95" rx="25" ry="15" fill="#ff8a65" transform="rotate(20)"/>
+    <ellipse cx="0" cy="100" rx="20" ry="12" fill="#ffab91"/>
+    
+    <!-- Eyes -->
+    <circle cx="-25" cy="-70" r="12" fill="#263238"/>
+    <circle cx="25" cy="-70" r="12" fill="#263238"/>
+    <circle cx="-22" cy="-72" r="5" fill="#fff"/>
+    <circle cx="28" cy="-72" r="5" fill="#fff"/>
+    
+    <!-- Antennae -->
+    <path d="M-20,-85 Q-40,-120 -70,-130" stroke="#ff7043" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M20,-85 Q40,-120 70,-130" stroke="#ff7043" stroke-width="4" fill="none" stroke-linecap="round"/>
+    
+    <!-- Little legs suggestion -->
+    <g stroke="#ff8a65" stroke-width="3" stroke-linecap="round">
+      <path d="M-40,30 L-60,50"/>
+      <path d="M-35,45 L-50,70"/>
+      <path d="M40,30 L60,50"/>
+      <path d="M35,45 L50,70"/>
+    </g>
+  </g>
+  
+  <!-- Glowing ring -->
+  <circle cx="200" cy="200" r="140" stroke="url(#glow)" stroke-width="2" fill="none" opacity="0.4"/>
+  
+  <!-- Corner accent -->
+  <path d="M360,40 L380,40 L380,60" stroke="#00f5ff" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M40,360 L40,380 L60,380" stroke="#00f5ff" stroke-width="2" fill="none" opacity="0.5"/>
+</svg>
