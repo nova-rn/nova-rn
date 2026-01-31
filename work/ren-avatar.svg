@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#1a1a3a"/>
+    </linearGradient>
+    <linearGradient id="lotus" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b9d"/>
+      <stop offset="100%" style="stop-color:#c44569"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f5ff"/>
+      <stop offset="100%" style="stop-color:#0080ff"/>
+    </linearGradient>
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Circuit pattern -->
+  <g stroke="#00f5ff" stroke-width="1" opacity="0.3" fill="none">
+    <path d="M0,100 H150 V200 H250 V150 H400"/>
+    <path d="M0,300 H100 V250 H200 V350 H400"/>
+    <path d="M50,0 V80 H120 V160"/>
+    <path d="M350,0 V120 H280 V200"/>
+    <path d="M200,400 V320 H280 V240"/>
+    <circle cx="150" cy="200" r="4" fill="#00f5ff"/>
+    <circle cx="250" cy="150" r="4" fill="#00f5ff"/>
+    <circle cx="100" cy="250" r="4" fill="#00f5ff"/>
+    <circle cx="200" cy="350" r="4" fill="#00f5ff"/>
+    <circle cx="280" cy="200" r="4" fill="#00f5ff"/>
+  </g>
+  
+  <!-- Lotus flower -->
+  <g transform="translate(200,220)" filter="url(#neon)">
+    <!-- Back petals -->
+    <ellipse cx="-50" cy="0" rx="45" ry="70" fill="url(#lotus)" opacity="0.7" transform="rotate(-30)"/>
+    <ellipse cx="50" cy="0" rx="45" ry="70" fill="url(#lotus)" opacity="0.7" transform="rotate(30)"/>
+    <ellipse cx="-70" cy="20" rx="40" ry="60" fill="url(#lotus)" opacity="0.5" transform="rotate(-50)"/>
+    <ellipse cx="70" cy="20" rx="40" ry="60" fill="url(#lotus)" opacity="0.5" transform="rotate(50)"/>
+    
+    <!-- Front petals -->
+    <ellipse cx="-25" cy="10" rx="35" ry="65" fill="url(#lotus)" transform="rotate(-15)"/>
+    <ellipse cx="25" cy="10" rx="35" ry="65" fill="url(#lotus)" transform="rotate(15)"/>
+    <ellipse cx="0" cy="10" rx="30" ry="60" fill="url(#lotus)"/>
+    
+    <!-- Center -->
+    <circle cx="0" cy="30" r="20" fill="#ffeb3b"/>
+    <circle cx="0" cy="30" r="12" fill="#ff9800"/>
+  </g>
+  
+  <!-- Digital overlay on lotus -->
+  <g transform="translate(200,220)" stroke="url(#glow)" stroke-width="1" fill="none" opacity="0.6">
+    <circle cx="0" cy="0" r="80" stroke-dasharray="10,5"/>
+    <circle cx="0" cy="0" r="100" stroke-dasharray="5,10"/>
+    <path d="M-60,-40 L-40,-60 L40,-60 L60,-40" stroke-width="2"/>
+    <path d="M-60,60 L-40,80 L40,80 L60,60" stroke-width="2"/>
+  </g>
+  
+  <!-- "REN" text with circuit style -->
+  <g filter="url(#neon)">
+    <text x="200" y="80" font-family="monospace" font-size="48" font-weight="bold" fill="url(#glow)" text-anchor="middle">REN</text>
+  </g>
+  
+  <!-- Binary decoration -->
+  <text x="20" y="390" font-family="monospace" font-size="10" fill="#00f5ff" opacity="0.4">01100001 01100111 01100101 01101110 01110100</text>
+  
+  <!-- Floating particles -->
+  <g fill="#00f5ff" opacity="0.6">
+    <circle cx="50" cy="50" r="2"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="350" cy="80" r="2"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="2.5s" repeatCount="indefinite"/></circle>
+    <circle cx="80" cy="180" r="1.5"><animate attributeName="opacity" values="0.6;0.3;0.6" dur="1.8s" repeatCount="indefinite"/></circle>
+    <circle cx="320" cy="300" r="2"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="370" cy="370" r="1.5"><animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/></circle>
+  </g>
+</svg>
